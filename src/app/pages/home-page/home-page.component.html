@@ -1,0 +1,48 @@
+<div class="header">
+  <app-sidebar></app-sidebar>
+  <h2 class="title" tuiTitle="l">
+    Moscow
+  </h2>
+  <tui-combo-box
+    [(ngModel)]="country"
+    [tuiTextfieldCleaner]="true"
+    class="header__input"
+    tuiDropdownMobile
+  >
+    Country
+    <tui-data-list-wrapper
+      *tuiDataList
+      [items]="countries | tuiFilterByInput"
+    />
+  </tui-combo-box>
+</div>
+
+
+<tui-tiles
+  [(order)]="order"
+  [debounce]="0"
+
+  class="tiles"
+>
+  @for (item of items; let index = $index; track index) {
+    <tui-tile
+      [height]="item.h"
+      [style.order]="order.get(index)"
+      [width]="item.w"
+      class="tile"
+    >
+      <app-card [title]="item.title" [value]="item.value" />
+      <tui-icon
+        class="handle"
+        icon="@tui.grip-vertical"
+        tuiTileHandle
+      />
+      <tui-icon
+        class="handle"
+        icon="@tui.grip-vertical"
+        tuiTileHandle
+      />
+    </tui-tile>
+  }
+
+</tui-tiles>

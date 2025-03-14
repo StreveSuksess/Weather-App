@@ -1,0 +1,33 @@
+<button
+  (click)="open.set(true)"
+  appearance="textfield"
+  iconStart="@tui.menu"
+  tuiButton
+  tuiButtonVertical
+  type="button"
+>
+</button>
+
+<tui-drawer
+  (click.self)="onClose()"
+  *tuiPopup="open()"
+  [overlay]="true"
+  class="drawer"
+  direction="left"
+>
+  <header class="header">
+    <h2 tuiHeader>
+      <div tuiTitle>Sticky header</div>
+      <div tuiAccessories>
+        <button
+          (click)="onClose()"
+          tuiButton
+          type="button"
+        >
+          Close
+        </button>
+      </div>
+    </h2>
+  </header>
+  <p *tuiRepeatTimes="let index of 5">Content</p>
+</tui-drawer>

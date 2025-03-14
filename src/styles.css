@@ -1,1 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
+router-outlet {
+  display: none;
+}
+
+[tuiCardLarge][data-space]:not([tuiCell],[tuiHeader],[tuiForm]) > :last-child:not([tuiCell]) {
+  margin-top: 0 !important;
+}

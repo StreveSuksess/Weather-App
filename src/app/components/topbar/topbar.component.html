@@ -1,0 +1,12 @@
+<tui-tabs-with-more>
+  @for (menuItem of menuItems; track menuItem.url) {
+    <a
+      *tuiItem
+      [routerLink]="menuItem.url"
+      routerLinkActive="active"
+      tuiTab
+    >
+      {{ menuItem.text }}
+    </a>
+  }
+</tui-tabs-with-more>
