@@ -17,7 +17,7 @@
 >
   <header class="header">
     <h2 tuiHeader>
-      <div tuiTitle>Sticky header</div>
+      <div tuiTitle>Followed cities</div>
       <div tuiAccessories>
         <button
           (click)="onClose()"
@@ -29,5 +29,7 @@
       </div>
     </h2>
   </header>
-  <p *tuiRepeatTimes="let index of 5">Content</p>
+  @for (city of cityState.followedCities; track city) {
+    <p>{{ city }}</p>
+  }
 </tui-drawer>

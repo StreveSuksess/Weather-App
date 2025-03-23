@@ -1,10 +1,10 @@
 import { Component, inject, signal } from '@angular/core'
 import { FormControl, ReactiveFormsModule } from '@angular/forms'
-import { TuiRepeatTimes } from '@taiga-ui/cdk'
-import { TuiButton, TuiDialogService, TuiPopup, TuiTextfield, TuiTitle } from '@taiga-ui/core'
+import { TuiButton, TuiDialogService, TuiPopup, TuiTitle } from '@taiga-ui/core'
 import { TUI_CONFIRM, TuiDrawer } from '@taiga-ui/kit'
 import { TuiHeader } from '@taiga-ui/layout'
 import { filter } from 'rxjs'
+import { CityStateService } from '../../state/city-state.service'
 
 @Component({
   selector: 'app-sidebar',
@@ -14,8 +14,6 @@ import { filter } from 'rxjs'
     TuiDrawer,
     TuiHeader,
     TuiPopup,
-    TuiRepeatTimes,
-    TuiTextfield,
     TuiTitle
   ],
   templateUrl: './sidebar.component.html',
@@ -23,6 +21,7 @@ import { filter } from 'rxjs'
 })
 export default class SidebarComponent {
   protected readonly dialogs = inject(TuiDialogService)
+  protected cityState = inject(CityStateService)
   protected readonly control = new FormControl('Some value')
   protected readonly open = signal(false)
 

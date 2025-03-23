@@ -1,0 +1,28 @@
+<div
+  class="content"
+>
+  <header tuiHeader>
+    <p tuiTitle>{{ title }}</p>
+
+  </header>
+
+  <tui-axes
+    class="axes"
+    [verticalLines]="temperatureForecastDay().length -1"
+    [horizontalLines]="1"
+    [axisXLabels]="axisXLabels"
+    [axisYLabels]="axisYLabels()"
+  >
+    <tui-line-chart
+      [filled]="true"
+      [height]="maxY()-minY()"
+      [smoothingFactor]="50"
+      [value]="temperatureForecastDay()"
+      [width]="temperatureForecastDay()[temperatureForecastDay().length-1][0]"
+      [x]="0"
+      [y]="minY()"
+      [yStringify]="stringifyTemperature"
+      [xStringify]="stringifyTime"
+    />
+  </tui-axes>
+</div>

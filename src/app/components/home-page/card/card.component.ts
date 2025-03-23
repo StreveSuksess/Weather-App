@@ -1,14 +1,12 @@
 import { Component, Input } from '@angular/core'
-import { TuiTextfieldOptionsDirective, TuiTitle } from '@taiga-ui/core'
+import { TuiTitle } from '@taiga-ui/core'
 import { TuiHeader } from '@taiga-ui/layout'
 
 @Component({
   selector: 'app-card',
   imports: [
     TuiHeader,
-    TuiTitle,
-    TuiTextfieldOptionsDirective
-
+    TuiTitle
   ],
   templateUrl: './card.component.html',
   styleUrl: './card.component.css'
