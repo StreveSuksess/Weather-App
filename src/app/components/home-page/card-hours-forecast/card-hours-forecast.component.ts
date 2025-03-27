@@ -5,20 +5,21 @@ import { TuiPoint, TuiTitle } from '@taiga-ui/core'
 import { TuiHeader } from '@taiga-ui/layout'
 
 const multiplyCoefficient = 30
-const amortizationCoefficient = 10
+const amortizationCoefficient = 20
+const countLines = 5
 
 @Component({
-  selector: 'app-card-forecast',
+  selector: 'app-card-hours-forecast',
   imports: [
     TuiAxes,
     TuiTitle,
     TuiHeader,
     TuiLineChart
   ],
-  templateUrl: './card-forecast.component.html',
-  styleUrl: './card-forecast.component.css'
+  templateUrl: './card-hours-forecast.component.html',
+  styleUrl: './card-hours-forecast.component.css'
 })
-export class CardForecastComponent {
+export class CardHoursForecastComponent {
   weatherData = input<IForecastWeather>()
   @Input() title!: string
 
@@ -36,7 +37,7 @@ export class CardForecastComponent {
   })
 
   protected temperatureForecastDay: Signal<TuiPoint[]> = computed(() => {
-    return this.hourArr().slice(this.currentHour() - 1, this.currentHour() + 12).map((hour, index) => [index, (hour.temp_c * multiplyCoefficient)])
+    return this.hourArr().slice((this.currentHour() === 0 ? 0 : this.currentHour() - 1), this.currentHour() + (this.currentHour() === 0 ? 13 : 12)).map((hour, index) => [index, (hour.temp_c * multiplyCoefficient)])
   })
   protected minY = computed(() => {
     return Math.min(...this.temperatureForecastDay().map((temperatureForecastDay) => temperatureForecastDay[1])) - amortizationCoefficient
@@ -49,7 +50,6 @@ export class CardForecastComponent {
   protected axisYLabels = computed(() => {
     const min = this.minY()
     const max = this.maxY()
-    const countLines = 5
     const result: string[] = []
 
     if (max <= min) {
@@ -71,6 +71,9 @@ export class CardForecastComponent {
       let hour = this.currentHour() - 1 + i
       if (hour > 23) {
         hour -= 24
+      }
+      if (hour === -1) {
+        hour = 23
       }
       this.axisXLabels.push(`${hour}:00`)
     }

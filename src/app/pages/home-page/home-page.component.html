@@ -7,18 +7,45 @@
   class="tiles"
 >
   @if (weatherData$() | async; as weatherData) {
-    @for (item of items(); let index = $index; track index) {
+    @for (item of items; let index = $index; track index) {
       <tui-tile
         [height]="item.h"
         [style.order]="order.get(index)"
         [width]="item.w"
         class="tile"
       >
-        @if (item.title === '12 hours forecast') {
-          <app-card-forecast [weatherData]="weatherData" [title]="item.title" />
-        } @else {
-          <app-card [title]="item.title" [value]="item.value" />
+        @switch (item.title) {
+          @case (Titles.ForecastHours) {
+            <app-card-hours-forecast [weatherData]="weatherData" [title]="item.title" />
+          }
+          @case (Titles.ForecastDays) {
+            <app-card-days-forecast [weatherData]="weatherData" [title]="item.title" />
+          }
+          @default {
+            <app-card [title]="item.title" [value]="getValueFromTitle(item.title, weatherData)" />
+          }
         }
+        <tui-icon
+          class="handle"
+          icon="@tui.grip-vertical"
+          tuiTileHandle
+        />
+        <tui-icon
+          class="handle"
+          icon="@tui.grip-vertical"
+          tuiTileHandle
+        />
+      </tui-tile>
+    }
+  } @else {
+    @for (item of items; let index = $index; track index) {
+      <tui-tile
+        [height]="item.h"
+        [style.order]="order.get(index)"
+        [width]="item.w"
+        [tuiSkeleton]="true"
+        class="tile"
+      >
         <tui-icon
           class="handle"
           icon="@tui.grip-vertical"

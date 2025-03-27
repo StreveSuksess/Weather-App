@@ -1,6 +1,7 @@
 import { inject, Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 import IForecastWeather from '../interfaces/responseWeather.interface'
+import { environment } from '../../../environments/environment.development'
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +14,8 @@ export class WeatherService {
     return this.http.get<IForecastWeather>(`${this.baseApiUrl}forecast.json`, {
       params: {
         q: city,
-        days: 2,
-        key: '19df4880065b439fbfa103452251303'
+        days: 3,
+        key: environment.apiKey
       }
     })
   }

@@ -24,12 +24,27 @@
           tuiButton
           type="button"
         >
-          Close
+          <tui-icon
+            icon="@tui.x"
+          />
         </button>
       </div>
     </h2>
   </header>
   @for (city of cityState.followedCities; track city) {
-    <p>{{ city }}</p>
+    <div tuiCell class="city">
+      <div tuiTitle>
+        {{ city }}
+      </div>
+      <button
+        tuiButton
+        type="button"
+        appearance="primary"
+      >
+        <tui-icon
+          icon="@tui.trash"
+        />
+      </button>
+    </div>
   }
 </tui-drawer>

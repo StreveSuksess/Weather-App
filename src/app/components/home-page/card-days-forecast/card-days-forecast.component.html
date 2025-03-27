@@ -8,7 +8,7 @@
 
   <tui-axes
     class="axes"
-    [verticalLines]="temperatureForecastDay().length -1"
+    [verticalLines]="temperatureForecastDays().length -1"
     [horizontalLines]="1"
     [axisXLabels]="axisXLabels"
     [axisYLabels]="axisYLabels()"
@@ -17,8 +17,8 @@
       [filled]="true"
       [height]="maxY()-minY()"
       [smoothingFactor]="50"
-      [value]="temperatureForecastDay()"
-      [width]="temperatureForecastDay()[temperatureForecastDay().length-1][0]"
+      [value]="temperatureForecastDays()"
+      [width]="temperatureForecastDays()[temperatureForecastDays().length-1][0]"
       [x]="0"
       [y]="minY()"
       [yStringify]="stringifyTemperature"

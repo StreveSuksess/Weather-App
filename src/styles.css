@@ -6,6 +6,10 @@ router-outlet {
   margin-top: 0 !important;
 }
 
-.t-label-x:nth-child(2) {
+app-card-hours-forecast .t-label-x:nth-child(2) {
+  color: var(--tui-status-info) !important;
+}
+
+app-card-days-forecast .t-label-x:nth-child(1) {
   color: var(--tui-status-info) !important;
 }

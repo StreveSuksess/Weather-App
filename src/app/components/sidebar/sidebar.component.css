@@ -7,3 +7,7 @@
 .header {
   position: sticky;
 }
+
+.city {
+  padding: .5rem 0;
+}
