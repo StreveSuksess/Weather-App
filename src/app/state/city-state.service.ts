@@ -34,6 +34,7 @@ export class CityStateService {
   }
 
   public followCity(cityToAdd: string): void {
+    if (this.followedCities.includes(cityToAdd)) return
     this.followedCitiesSignal.update(followedCities => [...followedCities, cityToAdd])
     this.saveFollowedCityToLocalStorage()
   }

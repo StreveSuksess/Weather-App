@@ -6,16 +6,20 @@ import { environment } from '../../../environments/environment.development'
 @Injectable({
   providedIn: 'root'
 })
-export class WeatherService {
+export class SearchCityService {
   private http = inject(HttpClient)
-  private baseApiUrl = environment.baseWeatherApiUrl
+  private baseApiUrl = environment.baseSearchCityApiUrl
 
-  getForecastWeather(city: string) {
-    return this.http.get<IForecastWeather>(`${this.baseApiUrl}forecast.json`, {
+  searchCity(city: string) {
+    return this.http.get<IForecastWeather>(`${this.baseApiUrl}searchJSON`, {
       params: {
-        q: city,
-        days: 3
+        name_startsWith: city,
+        cities: 'cities1000',
+        maxRows: 10,
+        username: environment.searchCityUsername
       }
     })
   }
+
+
 }
