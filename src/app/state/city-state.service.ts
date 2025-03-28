@@ -9,10 +9,14 @@ export class CityStateService {
   followedCitiesSignal = signal<string[]>(JSON.parse(localStorage.getItem('followedCities')!) ?? ['Moscow', 'Saint-Petersburg', 'New-York'])
   private readonly alerts = inject(TuiAlertService)
 
-  protected showNotification(): void {
+  private saveFollowedCityToLocalStorage(): void {
+    localStorage.setItem('followedCities', JSON.stringify(this.followedCities))
+  }
+
+  private showNotification(title: string, subtitle: string): void {
     this.alerts
-      .open('It\'s not your followed city!', {
-        label: 'Please follow this city',
+      .open(title, {
+        label: subtitle,
         appearance: 'warning',
         icon: '@tui.info',
         autoClose: 2500
@@ -20,12 +24,22 @@ export class CityStateService {
       .subscribe()
   }
 
-  get followedCities() {
-    return this.followedCitiesSignal()
+  public unfollowCity(cityToRemove: string): void {
+    if (this.followedCitiesSignal().length === 1) {
+      this.showNotification('You can\'t delete your last followed city!', '')
+      return
+    }
+    this.followedCitiesSignal.update(followedCities => followedCities.filter(city => city !== cityToRemove))
+    this.saveFollowedCityToLocalStorage()
   }
 
-  removeSelectedCity(): void {
-    // this.followedCities.s
+  public followCity(cityToAdd: string): void {
+    this.followedCitiesSignal.update(followedCities => [...followedCities, cityToAdd])
+    this.saveFollowedCityToLocalStorage()
+  }
+
+  get followedCities() {
+    return this.followedCitiesSignal()
   }
 
   get selectedCity() {
@@ -39,7 +53,7 @@ export class CityStateService {
   set selectedCity(value: string) {
     console.log(value)
     if (this.followedCities.findIndex(city => city === value) === -1 || value === null) {
-      this.showNotification()
+      this.showNotification('It\'s not your followed city!', 'Please follow this city')
       this.selectedCitySignal.set(this.followedCities[0])
     } else {
       this.selectedCitySignal.set(value)
