@@ -9,5 +9,11 @@ import { weatherInterceptor } from './data/interceptors/weather.interceptor'
 import { searchCityInterceptor } from './data/interceptors/search-city.interceptor'
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideAnimations(), provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), NG_EVENT_PLUGINS, provideHttpClient(withInterceptors([weatherInterceptor, searchCityInterceptor]))]
+  providers: [
+    provideAnimations(),
+    provideZoneChangeDetection({ eventCoalescing: true }),
+    provideRouter(routes),
+    NG_EVENT_PLUGINS,
+    provideHttpClient(withInterceptors([weatherInterceptor, searchCityInterceptor]))
+  ]
 }

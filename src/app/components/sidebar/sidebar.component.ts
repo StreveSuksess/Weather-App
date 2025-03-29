@@ -1,11 +1,21 @@
 import { Component, computed, inject, signal } from '@angular/core'
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { TuiAlertService, TuiButton, TuiIcon, TuiPopup, TuiTextfieldOptionsDirective, TuiTitle } from '@taiga-ui/core'
+import {
+  TuiAlertService,
+  TuiButton,
+  TuiIcon,
+  TuiLoader,
+  TuiPopup,
+  TuiTextfieldOptionsDirective,
+  TuiTitle
+} from '@taiga-ui/core'
 import { TuiDataListWrapper, TuiDataListWrapperComponent, TuiDrawer, TuiFilterByInputPipe } from '@taiga-ui/kit'
 import { TuiCell, TuiHeader } from '@taiga-ui/layout'
 import { CityStateService } from '../../state/city-state.service'
 import { TuiComboBoxModule } from '@taiga-ui/legacy'
 import { TuiDropdownMobile } from '@taiga-ui/addon-mobile'
+import { SearchCityService } from '../../data/services/search-city.service'
+import { debounceTime, distinctUntilChanged, finalize, switchMap, tap } from 'rxjs'
 
 @Component({
   selector: 'app-sidebar',
@@ -24,7 +34,8 @@ import { TuiDropdownMobile } from '@taiga-ui/addon-mobile'
     TuiFilterByInputPipe,
     FormsModule,
     TuiTextfieldOptionsDirective,
-    TuiDataListWrapper
+    TuiDataListWrapper,
+    TuiLoader
   ],
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css']
@@ -32,14 +43,40 @@ import { TuiDropdownMobile } from '@taiga-ui/addon-mobile'
 export default class SidebarComponent {
   private readonly alerts = inject(TuiAlertService)
   protected cityState = inject(CityStateService)
-  protected readonly control = new FormControl('Some value')
+  protected searchCityService = inject(SearchCityService)
+
+  protected readonly control = new FormControl('')
+  protected readonly searchControl = new FormControl('')
   protected readonly open = signal(false)
   protected searchCityInput = ''
+  protected citiesLoading = signal<boolean>(true)
+  protected baseCities = signal<string[]>([])
   protected cities = computed(() => {
-    return [
-      'Boston', 'Miami', 'Bangladesh'
-    ].filter(city => !this.cityState.followedCities.includes(city))
+    return this.baseCities().filter(city => !this.cityState.followedCities.includes(city))
   })
+
+  ngOnInit(): void {
+    this.searchCityService.searchCity('').pipe(finalize(() => {
+      this.citiesLoading.set(false)
+    })).subscribe((response: any) => {
+      this.baseCities.set(response)
+    })
+
+    this.searchControl.valueChanges.pipe(
+      debounceTime(200),
+      distinctUntilChanged(),
+      tap(() => {
+        this.citiesLoading.set(true)
+      }),
+      switchMap(query => {
+        return this.searchCityService.searchCity(query ?? '').pipe(finalize(() => {
+          this.citiesLoading.set(false)
+        }))
+      })
+    ).subscribe((response: any) => {
+      this.baseCities.set(response)
+    })
+  }
 
   private showNotification(title: string, subtitle: string): void {
     this.alerts
@@ -59,7 +96,7 @@ export default class SidebarComponent {
     }
 
     this.cityState.followCity(city)
-    this.searchCityInput = ''
+    this.searchControl.setValue('')
   }
 
   protected onClose(): void {
@@ -68,5 +105,13 @@ export default class SidebarComponent {
 
       return
     }
+  }
+
+  protected extractValueFromEvent(event: Event): string | null {
+    return (event.target as HTMLInputElement)?.value || null
+  }
+
+  protected onChange(searchQuery: string | null): void {
+    console.log(searchQuery)
   }
 }

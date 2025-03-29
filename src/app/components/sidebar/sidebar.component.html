@@ -39,9 +39,12 @@
       tuiDropdownMobile
     >
       Search city
+      <input [formControl]="searchControl" (input)="onChange(extractValueFromEvent($event))" type="text"
+             tuiTextfieldLegacy>
       <tui-data-list-wrapper
         *tuiDataList
         [items]="cities() | tuiFilterByInput"
+        [emptyContent]="citiesLoading() ? loader : 'No items found'"
       />
     </tui-combo-box>
   </header>
@@ -63,3 +66,8 @@
     </div>
   }
 </tui-drawer>
+
+
+<ng-template #loader>
+  <tui-loader class="loader" />
+</ng-template>
