@@ -7,7 +7,6 @@ import { TuiHeader } from '@taiga-ui/layout'
 const multiplyCoefficient = 30
 const amortizationCoefficient = 20
 const countLines = 5
-const countDays = 3
 
 @Component({
   selector: 'app-card-days-forecast',
@@ -23,6 +22,8 @@ const countDays = 3
 export class CardDaysForecastComponent {
   weatherData = input<IForecastWeather>()
   @Input() title!: string
+  @Input() countDays!: number
+  @Input() direction!: 'forward' | 'backward'
 
   protected readonly forecastDays = computed(() => {
     if (this.weatherData() !== undefined) {
@@ -64,14 +65,26 @@ export class CardDaysForecastComponent {
   ngOnInit() {
     const today = new Date()
 
-    for (let i = 0; i < countDays; i++) {
-      const nextDay = new Date(today)
-      nextDay.setDate(today.getDate() + i)
+    if (this.direction === 'forward') {
+      for (let i = 0; i < this.countDays; i++) {
+        const nextDay = new Date(today)
+        nextDay.setDate(today.getDate() + i)
 
-      const day = String(nextDay.getDate()).padStart(2, '0')
-      const month = String(nextDay.getMonth() + 1).padStart(2, '0')
+        const day = String(nextDay.getDate()).padStart(2, '0')
+        const month = String(nextDay.getMonth() + 1).padStart(2, '0')
 
-      this.axisXLabels.push(`${day}.${month}`)
+        this.axisXLabels.push(`${day}.${month}`)
+      }
+    } else {
+      for (let i = this.countDays; i > 0; i--) {
+        const nextDay = new Date(today)
+        nextDay.setDate(today.getDate() - i)
+
+        const day = String(nextDay.getDate()).padStart(2, '0')
+        const month = String(nextDay.getMonth() + 1).padStart(2, '0')
+
+        this.axisXLabels.push(`${day}.${month}`)
+      }
     }
   }
 

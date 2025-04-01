@@ -5,8 +5,8 @@ import { TuiAlertService } from '@taiga-ui/core'
   providedIn: 'root'
 })
 export class CityStateService {
-  selectedCitySignal = signal<string>(localStorage.getItem('selectedCity') ?? 'Moscow')
-  followedCitiesSignal = signal<string[]>(JSON.parse(localStorage.getItem('followedCities')!) ?? ['Moscow', 'Saint-Petersburg', 'New-York'])
+  private readonly selectedCitySignal = signal<string>(localStorage.getItem('selectedCity') ?? 'Moscow')
+  private readonly followedCitiesSignal = signal<string[]>(JSON.parse(localStorage.getItem('followedCities')!) ?? ['Moscow', 'Saint-Petersburg', 'New-York'])
   private readonly alerts = inject(TuiAlertService)
 
   private saveFollowedCityToLocalStorage(): void {
@@ -52,7 +52,6 @@ export class CityStateService {
   }
 
   set selectedCity(value: string) {
-    console.log(value)
     if (this.followedCities.findIndex(city => city === value) === -1 || value === null) {
       this.showNotification('It\'s not your followed city!', 'Please follow this city')
       this.selectedCitySignal.set(this.followedCities[0])

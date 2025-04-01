@@ -18,7 +18,7 @@ import { TuiItem } from '@taiga-ui/cdk'
 })
 export class TopbarComponent {
   protected readonly menuItems: { text: string, url: string }[] = [
-    { text: 'Home', url: 'home' },
+    { text: 'Current', url: 'home' },
     { text: 'History', url: 'history' }
   ]
 }

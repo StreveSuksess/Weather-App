@@ -1,1 +1,21 @@
-<p>history-page works!</p>
+<app-home-page-header />
+
+@if (historyWeather$() | async; as historyWeatherData) {
+  <div
+    tuiAppearance="floating"
+    tuiCardLarge
+    class="history__card"
+  >
+    <app-card-days-forecast [weatherData]="historyWeatherData" title="Last 7 days weather" [countDays]="7"
+                            direction="backward" />
+  </div>
+} @else {
+  <div
+    tuiAppearance="floating"
+    tuiCardLarge
+    [tuiSkeleton]="true"
+    class="history__card"
+  >
+  </div>
+}
+

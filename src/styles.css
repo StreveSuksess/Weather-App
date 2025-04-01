@@ -6,10 +6,15 @@ router-outlet {
   margin-top: 0 !important;
 }
 
-app-card-hours-forecast .t-label-x:nth-child(2) {
+app-home-page app-card-hours-forecast .t-label-x:nth-child(2) {
   color: var(--tui-status-info) !important;
 }
 
-app-card-days-forecast .t-label-x:nth-child(1) {
+app-home-page app-card-days-forecast .t-label-x:nth-child(1) {
   color: var(--tui-status-info) !important;
 }
+
+app-history-page app-card-days-forecast {
+  height: 50vh;
+}
+

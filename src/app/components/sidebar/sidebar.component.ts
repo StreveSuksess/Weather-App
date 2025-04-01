@@ -3,6 +3,7 @@ import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms'
 import {
   TuiAlertService,
   TuiButton,
+  TuiDurationOptions,
   TuiIcon,
   TuiLoader,
   TuiPopup,
@@ -16,6 +17,7 @@ import { TuiComboBoxModule } from '@taiga-ui/legacy'
 import { TuiDropdownMobile } from '@taiga-ui/addon-mobile'
 import { SearchCityService } from '../../data/services/search-city.service'
 import { debounceTime, distinctUntilChanged, finalize, switchMap, tap } from 'rxjs'
+import { tuiPure } from '@taiga-ui/cdk'
 
 @Component({
   selector: 'app-sidebar',
@@ -31,11 +33,11 @@ import { debounceTime, distinctUntilChanged, finalize, switchMap, tap } from 'rx
     TuiComboBoxModule,
     TuiDataListWrapperComponent,
     TuiDropdownMobile,
-    TuiFilterByInputPipe,
     FormsModule,
     TuiTextfieldOptionsDirective,
     TuiDataListWrapper,
-    TuiLoader
+    TuiLoader,
+    TuiFilterByInputPipe
   ],
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css']
@@ -78,40 +80,29 @@ export default class SidebarComponent {
     })
   }
 
-  private showNotification(title: string, subtitle: string): void {
-    this.alerts
-      .open(title, {
-        label: subtitle,
-        appearance: 'warning',
-        icon: '@tui.info',
-        autoClose: 2500
-      })
-      .subscribe()
-  }
-
   protected onChangeSearchCityInput = (city: string) => {
     if (!this.cities().includes(city)) {
-      this.showNotification('Please select a city from the list', '')
       return
     }
 
-    this.cityState.followCity(city)
+    this.searchCityInput = ''
     this.searchControl.setValue('')
+    this.cityState.followCity(city)
+    this.cityState.selectedCity = city
   }
 
   protected onClose(): void {
     if (this.control.pristine) {
       this.open.set(false)
-
-      return
     }
   }
 
-  protected extractValueFromEvent(event: Event): string | null {
-    return (event.target as HTMLInputElement)?.value || null
+  protected strictMatcher() {
+    return false
   }
 
-  protected onChange(searchQuery: string | null): void {
-    console.log(searchQuery)
+  @tuiPure
+  protected getAnimation(duration: number): TuiDurationOptions {
+    return { value: '', params: { duration } }
   }
 }

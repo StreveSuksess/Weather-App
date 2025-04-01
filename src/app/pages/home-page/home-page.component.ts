@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core'
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core'
 import { CardComponent } from '../../components/home-page/card/card.component'
 import { TuiIcon } from '@taiga-ui/core'
 import { TuiSkeleton, TuiTile, TuiTileHandle, TuiTilesComponent } from '@taiga-ui/kit'
@@ -13,6 +13,7 @@ import {
   CardHoursForecastComponent
 } from '../../components/home-page/card-hours-forecast/card-hours-forecast.component'
 import { CardDaysForecastComponent } from '../../components/home-page/card-days-forecast/card-days-forecast.component'
+import { TuiCardLarge } from '@taiga-ui/layout'
 
 enum Titles {
   Temperature = 'Temperature',
@@ -23,6 +24,9 @@ enum Titles {
   Pressure = 'Pressure',
   ForecastHours = '12 hours forecast',
   ForecastDays = '3 days forecast',
+  Sunrise = 'Sunrise',
+  Sunset = 'Sunset',
+  MoonPhase = 'Moon Phase',
 }
 
 
@@ -43,10 +47,12 @@ enum Titles {
     AsyncPipe,
     TuiSkeleton,
     CardHoursForecastComponent,
-    CardDaysForecastComponent
+    CardDaysForecastComponent,
+    TuiCardLarge
   ],
   templateUrl: './home-page.component.html',
-  styleUrl: './home-page.component.css'
+  styleUrl: './home-page.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomePageComponent {
   protected readonly cityState = inject(CityStateService)
@@ -60,7 +66,10 @@ export class HomePageComponent {
     { w: 1, h: 1, title: Titles.Humidity, value: '' },
     { w: 1, h: 1, title: Titles.Pressure, value: '' },
     { w: 1, h: 1, title: Titles.Wind, value: '' },
-    { w: 3, h: 3, title: Titles.ForecastDays, value: '' }
+    { w: 3, h: 3, title: Titles.ForecastDays, value: '' },
+    { w: 1, h: 1, title: Titles.Sunrise, value: '' },
+    { w: 1, h: 1, title: Titles.Sunset, value: '' },
+    { w: 1, h: 1, title: Titles.MoonPhase, value: '' }
   ]
   private readonly weatherService = inject(WeatherService)
   protected readonly weatherData$ = computed(() => this.weatherService.getForecastWeather(this.cityState.selectedCity))
@@ -79,6 +88,12 @@ export class HomePageComponent {
         return `${weatherData.current.condition.text}`
       case Titles.Wind:
         return `${weatherData.current.wind_kph} kph`
+      case Titles.Sunrise:
+        return `${weatherData.forecast.forecastday[0].astro.sunrise}`
+      case Titles.Sunset:
+        return `${weatherData.forecast.forecastday[0].astro.sunset}`
+      case Titles.MoonPhase:
+        return `${weatherData.forecast.forecastday[0].astro.moon_phase}`
       default:
         return ''
     }

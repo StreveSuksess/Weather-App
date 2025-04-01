@@ -32,6 +32,7 @@
     </h2>
 
     <tui-combo-box
+      [strictMatcher]="strictMatcher"
       [(ngModel)]="searchCityInput"
       (ngModelChange)="onChangeSearchCityInput(searchCityInput)"
       [tuiTextfieldCleaner]="false"
@@ -39,7 +40,7 @@
       tuiDropdownMobile
     >
       Search city
-      <input [formControl]="searchControl" (input)="onChange(extractValueFromEvent($event))" type="text"
+      <input [formControl]="searchControl" type="text"
              tuiTextfieldLegacy>
       <tui-data-list-wrapper
         *tuiDataList

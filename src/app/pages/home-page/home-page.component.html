@@ -19,7 +19,8 @@
             <app-card-hours-forecast [weatherData]="weatherData" [title]="item.title" />
           }
           @case (Titles.ForecastDays) {
-            <app-card-days-forecast [weatherData]="weatherData" [title]="item.title" />
+            <app-card-days-forecast [weatherData]="weatherData" [title]="item.title" [countDays]="3"
+                                    direction="forward" />
           }
           @default {
             <app-card [title]="item.title" [value]="getValueFromTitle(item.title, weatherData)" />
@@ -44,6 +45,7 @@
         [style.order]="order.get(index)"
         [width]="item.w"
         [tuiSkeleton]="true"
+        tuiCardLarge
         class="tile"
       >
         <tui-icon
