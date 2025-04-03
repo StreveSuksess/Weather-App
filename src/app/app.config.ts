@@ -5,8 +5,8 @@ import { provideRouter } from '@angular/router'
 
 import { routes } from './app.routes'
 import { provideHttpClient, withInterceptors } from '@angular/common/http'
-import { weatherInterceptor } from './shared/api/interceptors/weather.interceptor'
-import { searchCityInterceptor } from './shared/api/interceptors/search-city.interceptor'
+import { weatherInterceptor } from './processes/interceptors/weather.interceptor'
+import { searchCityInterceptor } from './processes/interceptors/search-city.interceptor'
 
 export const appConfig: ApplicationConfig = {
   providers: [

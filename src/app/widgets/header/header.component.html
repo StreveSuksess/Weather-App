@@ -3,16 +3,5 @@
   <h2 class="title" tuiTitle="l">
     {{ cityState.selectedCity }}
   </h2>
-  <tui-combo-box
-    [(ngModel)]="cityState.selectedCity"
-    [tuiTextfieldCleaner]="false"
-    class="header__input"
-    tuiDropdownMobile
-  >
-    City
-    <tui-data-list-wrapper
-      *tuiDataList
-      [items]="cityState.followedCities | tuiFilterByInput"
-    />
-  </tui-combo-box>
+  <app-search-followed-city />
 </div>

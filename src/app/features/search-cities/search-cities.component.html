@@ -1,0 +1,26 @@
+<tui-combo-box
+  [strictMatcher]="strictMatcher"
+  [(ngModel)]="searchCityInput"
+  (ngModelChange)="onChangeSearchCityInput(searchCityInput)"
+  [tuiTextfieldCleaner]="false"
+  class="header__input"
+  tuiDropdownMobile
+>
+  Search city
+  <input [formControl]="searchControl" type="text"
+         tuiTextfieldLegacy>
+  <tui-data-list-wrapper
+    *tuiDataList
+    [items]="cities() | tuiFilterByInput"
+    [emptyContent]="citiesLoading() ? loader : noItems"
+  />
+</tui-combo-box>
+
+
+<ng-template #loader>
+  <tui-loader class="loader" />
+</ng-template>
+
+<ng-template #noItems>
+  <span>No items found..</span>
+</ng-template>

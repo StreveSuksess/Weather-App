@@ -1,0 +1,15 @@
+<div tuiCell class="city">
+  <div tuiTitle>
+    {{ city }}
+  </div>
+  <button
+    tuiButton
+    type="button"
+    appearance="primary"
+    (click)="cityState.unfollowCity(city)"
+  >
+    <tui-icon
+      icon="@tui.trash"
+    />
+  </button>
+</div>

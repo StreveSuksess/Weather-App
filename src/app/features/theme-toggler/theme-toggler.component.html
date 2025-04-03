@@ -1,0 +1,9 @@
+<div tuiAccessories>
+  <span tuiSubtitle>Dark theme:</span>
+  <input
+    (ngModelChange)="darkMode.set(!darkMode())"
+    [ngModel]="darkMode()"
+    tuiSwitch
+    type="checkbox"
+  />
+</div>

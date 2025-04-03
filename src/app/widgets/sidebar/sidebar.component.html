@@ -31,44 +31,9 @@
       </div>
     </h2>
 
-    <tui-combo-box
-      [strictMatcher]="strictMatcher"
-      [(ngModel)]="searchCityInput"
-      (ngModelChange)="onChangeSearchCityInput(searchCityInput)"
-      [tuiTextfieldCleaner]="false"
-      class="header__input"
-      tuiDropdownMobile
-    >
-      Search city
-      <input [formControl]="searchControl" type="text"
-             tuiTextfieldLegacy>
-      <tui-data-list-wrapper
-        *tuiDataList
-        [items]="cities() | tuiFilterByInput"
-        [emptyContent]="citiesLoading() ? loader : 'No items found'"
-      />
-    </tui-combo-box>
+    <app-search-cities />
   </header>
   @for (city of cityState.followedCities; track city) {
-    <div tuiCell class="city">
-      <div tuiTitle>
-        {{ city }}
-      </div>
-      <button
-        tuiButton
-        type="button"
-        appearance="primary"
-        (click)="cityState.unfollowCity(city)"
-      >
-        <tui-icon
-          icon="@tui.trash"
-        />
-      </button>
-    </div>
+    <app-city [city]="city" />
   }
 </tui-drawer>
-
-
-<ng-template #loader>
-  <tui-loader class="loader" />
-</ng-template>

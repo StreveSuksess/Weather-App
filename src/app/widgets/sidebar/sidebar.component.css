@@ -7,16 +7,3 @@
 .header {
   position: sticky;
 }
-
-.city {
-  padding: .5rem 0;
-}
-
-.header__input {
-  display: block !important;
-  width: 100%;
-}
-
-.loader {
-  margin: 0 auto;
-}

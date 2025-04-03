@@ -1,0 +1,12 @@
+<tui-combo-box
+  [(ngModel)]="cityState.selectedCity"
+  [tuiTextfieldCleaner]="false"
+  class="input"
+  tuiDropdownMobile
+>
+  City
+  <tui-data-list-wrapper
+    *tuiDataList
+    [items]="cityState.followedCities | tuiFilterByInput"
+  />
+</tui-combo-box>
