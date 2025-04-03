@@ -4,7 +4,7 @@ import { RouterOutlet } from '@angular/router'
 import { TuiCardLarge, TuiHeader } from '@taiga-ui/layout'
 import { TuiSwitch } from '@taiga-ui/kit'
 import { FormsModule } from '@angular/forms'
-import { TopbarComponent } from './components/topbar/topbar.component'
+import { TopbarComponent } from './widgets/topbar/topbar.component'
 
 @Component({
   selector: 'app-root',

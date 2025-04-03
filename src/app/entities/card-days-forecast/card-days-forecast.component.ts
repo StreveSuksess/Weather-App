@@ -1,5 +1,5 @@
 import { Component, computed, input, Input, Signal } from '@angular/core'
-import IForecastWeather from '../../../data/interfaces/responseWeather.interface'
+import IForecastWeather from '../../shared/api/interfaces/responseWeather.interface'
 import { TuiPoint, TuiTitle } from '@taiga-ui/core'
 import { TuiAxes, TuiLineChart } from '@taiga-ui/addon-charts'
 import { TuiHeader } from '@taiga-ui/layout'

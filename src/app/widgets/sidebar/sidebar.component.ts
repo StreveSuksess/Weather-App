@@ -12,10 +12,10 @@ import {
 } from '@taiga-ui/core'
 import { TuiDataListWrapper, TuiDataListWrapperComponent, TuiDrawer, TuiFilterByInputPipe } from '@taiga-ui/kit'
 import { TuiCell, TuiHeader } from '@taiga-ui/layout'
-import { CityStateService } from '../../state/city-state.service'
+import { CityStateService } from '../../shared/state/city-state.service'
 import { TuiComboBoxModule } from '@taiga-ui/legacy'
 import { TuiDropdownMobile } from '@taiga-ui/addon-mobile'
-import { SearchCityService } from '../../data/services/search-city.service'
+import { SearchCityService } from '../../shared/api/services/search-city.service'
 import { debounceTime, distinctUntilChanged, finalize, switchMap, tap } from 'rxjs'
 import { tuiPure } from '@taiga-ui/cdk'
 

@@ -1,18 +1,15 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core'
-import { CardComponent } from '../../components/home-page/card/card.component'
+import { CardComponent } from '../../entities/card/card.component'
 import { TuiIcon } from '@taiga-ui/core'
 import { TuiSkeleton, TuiTile, TuiTileHandle, TuiTilesComponent } from '@taiga-ui/kit'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { TuiComboBoxModule, TuiInputTagModule, TuiTextfieldControllerModule } from '@taiga-ui/legacy'
-import { WeatherService } from '../../data/services/weather.service'
-import { HomePageHeaderComponent } from '../../components/home-page-header/home-page-header.component'
-import { CityStateService } from '../../state/city-state.service'
+import { WeatherService } from '../../shared/api/services/weather.service'
+import { CityStateService } from '../../shared/state/city-state.service'
 import { AsyncPipe } from '@angular/common'
-import IForecastWeather from '../../data/interfaces/responseWeather.interface'
-import {
-  CardHoursForecastComponent
-} from '../../components/home-page/card-hours-forecast/card-hours-forecast.component'
-import { CardDaysForecastComponent } from '../../components/home-page/card-days-forecast/card-days-forecast.component'
+import IForecastWeather from '../../shared/api/interfaces/responseWeather.interface'
+import { CardHoursForecastComponent } from '../../entities/card-hours-forecast/card-hours-forecast.component'
+import { CardDaysForecastComponent } from '../../entities/card-days-forecast/card-days-forecast.component'
 import { TuiCardLarge } from '@taiga-ui/layout'
 
 enum Titles {
@@ -43,7 +40,6 @@ enum Titles {
     TuiInputTagModule,
     TuiTextfieldControllerModule,
     TuiComboBoxModule,
-    HomePageHeaderComponent,
     AsyncPipe,
     TuiSkeleton,
     CardHoursForecastComponent,

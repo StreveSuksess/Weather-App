@@ -5,10 +5,10 @@ import { TuiComboBoxModule } from '@taiga-ui/legacy'
 import { FormsModule } from '@angular/forms'
 import { TuiDropdownMobile } from '@taiga-ui/addon-mobile'
 import { TuiDataListWrapper, TuiDataListWrapperComponent, TuiFilterByInputPipe } from '@taiga-ui/kit'
-import { CityStateService } from '../../state/city-state.service'
+import { CityStateService } from '../../shared/state/city-state.service'
 
 @Component({
-  selector: 'app-home-page-header',
+  selector: 'app-header',
   imports: [
     SidebarComponent,
     TuiTitle,
@@ -20,9 +20,9 @@ import { CityStateService } from '../../state/city-state.service'
     TuiDataListWrapper,
     TuiFilterByInputPipe
   ],
-  templateUrl: './home-page-header.component.html',
-  styleUrl: './home-page-header.component.css'
+  templateUrl: './header.component.html',
+  styleUrl: './header.component.css'
 })
-export class HomePageHeaderComponent {
+export class HeaderComponent {
   protected cityState = inject(CityStateService)
 }
