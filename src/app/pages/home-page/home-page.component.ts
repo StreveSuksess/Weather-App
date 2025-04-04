@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { TuiComboBoxModule, TuiInputTagModule, TuiTextfieldControllerModule } from '@taiga-ui/legacy'
-import { HeaderComponent, TilesComponent } from '../../widgets'
+import { HeaderComponent, TilesComponent } from '@app/widgets'
 
 
 @Component({

@@ -3,8 +3,8 @@ import SidebarComponent from '../sidebar/sidebar.component'
 import { TuiTitle } from '@taiga-ui/core'
 import { TuiComboBoxModule } from '@taiga-ui/legacy'
 import { FormsModule } from '@angular/forms'
-import { CityStateService } from '../../shared'
-import { SearchFollowedCityComponent } from '../../features'
+import { CityStateService } from '@app/shared'
+import { SearchFollowedCityComponent } from '@app/features'
 
 @Component({
   selector: 'app-header',

@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router'
-import { HistoryPageComponent, HomePageComponent } from './pages'
+import { HistoryPageComponent, HomePageComponent } from '@app/pages'
 
 export const routes: Routes = [
   { path: '', component: HomePageComponent },

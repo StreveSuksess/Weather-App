@@ -3,11 +3,11 @@ import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { TuiButton, TuiDurationOptions, TuiIcon, TuiPopup, TuiTitle } from '@taiga-ui/core'
 import { TuiDrawer } from '@taiga-ui/kit'
 import { TuiHeader } from '@taiga-ui/layout'
-import { CityStateService } from '../../shared'
+import { CityStateService } from '@app/shared'
 import { TuiComboBoxModule } from '@taiga-ui/legacy'
 import { tuiPure } from '@taiga-ui/cdk'
-import { SearchCitiesComponent } from '../../features'
-import { CityComponent } from '../../entities'
+import { SearchCitiesComponent } from '@app/features'
+import { CityComponent } from '@app/entities'
 
 @Component({
   selector: 'app-sidebar',

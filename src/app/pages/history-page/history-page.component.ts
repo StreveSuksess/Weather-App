@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { HeaderComponent, HistoryWeatherComponent } from '../../widgets'
+import { HeaderComponent, HistoryWeatherComponent } from '@app/widgets'
 
 @Component({
   selector: 'app-history-page',

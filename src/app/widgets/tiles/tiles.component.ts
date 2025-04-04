@@ -1,10 +1,10 @@
 import { Component, computed, inject } from '@angular/core'
 import { AsyncPipe } from '@angular/common'
-import { CardComponent, CardDaysForecastComponent, CardHoursForecastComponent } from '../../entities'
+import { CardComponent, CardDaysForecastComponent, CardHoursForecastComponent } from '@app/entities'
 import { TuiCardLarge } from '@taiga-ui/layout'
 import { TuiIcon } from '@taiga-ui/core'
 import { TuiSkeleton, TuiTile, TuiTileHandle, TuiTilesComponent } from '@taiga-ui/kit'
-import { CityStateService, WeatherService } from '../../shared'
+import { CityStateService, WeatherService } from '@app/shared'
 import IForecastWeather from '../../shared/api/interfaces/responseWeather.interface'
 
 enum Titles {

@@ -1,7 +1,7 @@
 import { Component, inject, Input } from '@angular/core'
 import { TuiButton, TuiIcon, TuiTitle } from '@taiga-ui/core'
 import { TuiCell } from '@taiga-ui/layout'
-import { CityStateService } from '../../shared'
+import { CityStateService } from '@app/shared'
 
 @Component({
   selector: 'app-city',

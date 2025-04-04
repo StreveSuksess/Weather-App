@@ -5,7 +5,7 @@ import { TuiDataListWrapper, TuiDataListWrapperComponent, TuiFilterByInputPipe }
 import { TuiDropdownMobile } from '@taiga-ui/addon-mobile'
 import { debounceTime, distinctUntilChanged, finalize, switchMap, tap } from 'rxjs'
 import { TuiAlertService, TuiLoader, TuiTextfieldOptionsDirective } from '@taiga-ui/core'
-import { CityStateService, SearchCityService } from '../../shared'
+import { CityStateService, SearchCityService } from '@app/shared'
 
 @Component({
   selector: 'app-search-cities',

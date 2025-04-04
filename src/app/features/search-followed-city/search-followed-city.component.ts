@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core'
 import { TuiComboBoxModule } from '@taiga-ui/legacy'
 import { TuiDataListWrapper, TuiDataListWrapperComponent, TuiFilterByInputPipe } from '@taiga-ui/kit'
 import { TuiDropdownMobile } from '@taiga-ui/addon-mobile'
-import { CityStateService } from '../../shared'
+import { CityStateService } from '@app/shared'
 import { FormsModule } from '@angular/forms'
 import { TuiTextfieldOptionsDirective } from '@taiga-ui/core'
 
