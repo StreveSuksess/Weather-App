@@ -1,0 +1,76 @@
+@import '../../../node_modules/.pnpm/@taiga-ui+core@4.28.0_bynpwnltcf7ohleudpkx4nkxrq/node_modules/@taiga-ui/core/styles/taiga-ui-local.less';
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.tiles {
+  gap: 1rem;
+  grid-auto-rows: minmax(6.25rem, auto);
+}
+
+.tile::before {
+  content: 'Drop here';
+  display: flex;
+  block-size: 100%;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  color: var(--tui-border-normal);
+  border-radius: var(--tui-radius-l);
+  border: 2px dashed var(--tui-border-normal);
+  transition: all .3s;
+}
+
+tui-tiles .tile::before {
+  opacity: 0;
+}
+
+tui-tiles._dragged .tile::before {
+  opacity: 1;
+}
+
+
+.handle {
+  transition: all .3s;
+  position: absolute;
+  right: 0.75rem;
+  top: 1rem;
+  opacity: 0;
+  cursor: move;
+
+  tui-tiles:not(._dragged) tui-tile:hover &,
+  tui-tile._dragged & {
+    opacity: 0.7;
+  }
+}
+
+.axes {
+  block-size: 85%;
+  inline-size: 100%;
+  margin: 1rem auto;
+  color: #bc71c9;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.content {
+  transition: all .3s;
+
+  block-size: 100%;
+  padding: 1rem;
+  background: var(--tui-background-neutral-1);
+  box-sizing: border-box;
+  border-radius: var(--tui-radius-l);
+  border: 1px solid var(--tui-border-normal);
+  overflow: hidden;
+
+  tui-tile._dragged & {
+    box-shadow: var(--tui-shadow-small-hover);
+  }
+}

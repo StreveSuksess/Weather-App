@@ -3,8 +3,8 @@ import { Component, inject } from '@angular/core'
 import { RouterOutlet } from '@angular/router'
 import { TuiCardLarge, TuiHeader } from '@taiga-ui/layout'
 import { FormsModule } from '@angular/forms'
-import { TopbarComponent } from './widgets'
-import { ThemeTogglerComponent } from './features'
+import { TopbarComponent } from '../widgets'
+import { ThemeTogglerComponent } from '../features'
 
 @Component({
   selector: 'app-root',

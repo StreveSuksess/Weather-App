@@ -23,19 +23,19 @@
         "app/*"
       ],
       "@shared/*": [
-        "app/shared/*"
+        "shared/*"
       ],
       "@entities/*": [
-        "app/entities/*"
+        "entities/*"
       ],
       "@features/*": [
-        "app/features/*"
+        "features/*"
       ],
       "@widgets/*": [
-        "app/widgets/*"
+        "widgets/*"
       ],
       "@pages/*": [
-        "app/pages/*"
+        "pages/*"
       ]
     }
   },
