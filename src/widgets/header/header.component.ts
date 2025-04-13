@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core'
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core'
 import SidebarComponent from '../sidebar/sidebar.component'
 import { TuiTitle } from '@taiga-ui/core'
 import { TuiComboBoxModule } from '@taiga-ui/legacy'
@@ -16,7 +16,8 @@ import { SearchFollowedCityComponent } from '../../features'
     SearchFollowedCityComponent
   ],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrl: './header.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderComponent {
   protected cityState = inject(CityStateService)

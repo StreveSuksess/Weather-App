@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core'
+import { ChangeDetectionStrategy, Component, EventEmitter, inject, Output } from '@angular/core'
 import { TuiComboBoxModule } from '@taiga-ui/legacy'
 import { TuiDataListWrapper, TuiDataListWrapperComponent, TuiFilterByInputPipe } from '@taiga-ui/kit'
 import { TuiDropdownMobile } from '@taiga-ui/addon-mobile'
@@ -18,7 +18,8 @@ import { TuiTextfieldOptionsDirective } from '@taiga-ui/core'
     TuiDataListWrapper
   ],
   templateUrl: './search-followed-city.component.html',
-  styleUrl: './search-followed-city.component.css'
+  styleUrl: './search-followed-city.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SearchFollowedCityComponent {
   protected cityState = inject(CityStateService)

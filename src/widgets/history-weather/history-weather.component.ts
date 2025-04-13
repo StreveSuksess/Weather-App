@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core'
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core'
 import { CityStateService, WeatherService } from '../../shared'
 import { AsyncPipe } from '@angular/common'
 import { CardDaysForecastComponent } from '../../entities'
@@ -16,7 +16,8 @@ import { TuiSkeleton } from '@taiga-ui/kit'
     TuiSkeleton
   ],
   templateUrl: './history-weather.component.html',
-  styleUrl: './history-weather.component.css'
+  styleUrl: './history-weather.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HistoryWeatherComponent {
   private weatherService = inject(WeatherService)

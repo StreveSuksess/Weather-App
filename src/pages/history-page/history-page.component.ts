@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { ChangeDetectionStrategy, Component } from '@angular/core'
 import { HeaderComponent, HistoryWeatherComponent } from '../../widgets'
 
 @Component({
@@ -8,7 +8,8 @@ import { HeaderComponent, HistoryWeatherComponent } from '../../widgets'
     HistoryWeatherComponent
   ],
   templateUrl: './history-page.component.html',
-  styleUrl: './history-page.component.css'
+  styleUrl: './history-page.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HistoryPageComponent {
 }

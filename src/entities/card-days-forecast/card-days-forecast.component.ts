@@ -1,4 +1,4 @@
-import { Component, computed, input, Input, Signal } from '@angular/core'
+import { ChangeDetectionStrategy, Component, computed, input, Input, Signal } from '@angular/core'
 import IForecastWeather from '../../shared/api/interfaces/responseWeather.interface'
 import { TuiPoint, TuiTitle } from '@taiga-ui/core'
 import { TuiAxes, TuiLineChart } from '@taiga-ui/addon-charts'
@@ -17,7 +17,8 @@ const countLines = 5
     TuiTitle
   ],
   templateUrl: './card-days-forecast.component.html',
-  styleUrl: './card-days-forecast.component.css'
+  styleUrl: './card-days-forecast.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CardDaysForecastComponent {
   weatherData = input<IForecastWeather>()

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core'
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
 import { TuiTitle } from '@taiga-ui/core'
 import { TuiHeader } from '@taiga-ui/layout'
 
@@ -9,7 +9,8 @@ import { TuiHeader } from '@taiga-ui/layout'
     TuiTitle
   ],
   templateUrl: './card.component.html',
-  styleUrl: './card.component.css'
+  styleUrl: './card.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CardComponent {
   @Input() value!: string

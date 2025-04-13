@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core'
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core'
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { TuiButton, TuiDurationOptions, TuiIcon, TuiPopup, TuiTitle } from '@taiga-ui/core'
 import { TuiDrawer } from '@taiga-ui/kit'
@@ -25,7 +25,8 @@ import { CityComponent } from '../../entities'
     CityComponent
   ],
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.css']
+  styleUrls: ['./sidebar.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class SidebarComponent {
   protected cityState = inject(CityStateService)

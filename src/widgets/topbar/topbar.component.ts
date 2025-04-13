@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { ChangeDetectionStrategy, Component } from '@angular/core'
 import { TuiTab, TuiTabsWithMore } from '@taiga-ui/kit'
 import { RouterLink, RouterLinkActive } from '@angular/router'
 import { TuiItem } from '@taiga-ui/cdk'
@@ -14,7 +14,8 @@ import { TuiItem } from '@taiga-ui/cdk'
     RouterLinkActive
   ],
   templateUrl: './topbar.component.html',
-  styleUrl: './topbar.component.css'
+  styleUrl: './topbar.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TopbarComponent {
   protected readonly menuItems: { text: string, url: string }[] = [

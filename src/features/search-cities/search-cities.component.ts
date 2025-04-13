@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from '@angular/core'
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core'
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { TuiComboBoxModule, TuiInputDateRangeModule } from '@taiga-ui/legacy'
 import { TuiDataListWrapper, TuiDataListWrapperComponent, TuiFilterByInputPipe } from '@taiga-ui/kit'
@@ -22,7 +22,8 @@ import { CityStateService, SearchCityService } from '../../shared'
     TuiDataListWrapper
   ],
   templateUrl: './search-cities.component.html',
-  styleUrl: './search-cities.component.css'
+  styleUrl: './search-cities.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SearchCitiesComponent {
   private readonly alerts = inject(TuiAlertService)

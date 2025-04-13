@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core'
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core'
 import { AsyncPipe } from '@angular/common'
 import { CardComponent, CardDaysForecastComponent, CardHoursForecastComponent } from '../../entities'
 import { TuiCardLarge } from '@taiga-ui/layout'
@@ -36,7 +36,8 @@ enum Titles {
     TuiSkeleton
   ],
   templateUrl: './tiles.component.html',
-  styleUrl: './tiles.component.css'
+  styleUrl: './tiles.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TilesComponent {
   protected readonly cityState = inject(CityStateService)

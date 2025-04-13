@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core'
+import { ChangeDetectionStrategy, Component, inject, Input } from '@angular/core'
 import { TuiButton, TuiIcon, TuiTitle } from '@taiga-ui/core'
 import { TuiCell } from '@taiga-ui/layout'
 import { CityStateService } from '../../shared'
@@ -12,7 +12,8 @@ import { CityStateService } from '../../shared'
     TuiTitle
   ],
   templateUrl: './city.component.html',
-  styleUrl: './city.component.css'
+  styleUrl: './city.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CityComponent {
   @Input() city!: string
